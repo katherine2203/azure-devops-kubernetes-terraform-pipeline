@@ -22,6 +22,7 @@ stages:
     steps:
     - bash: docker --version
     - bash: docker login -u iamapikey -p tmOs03iOZ7oHVelagO4bzGK2z7Uzy90RmMh3rtzrDxRA us.icr.io
+    - bash: docker images
       
       
     # - task: Docker@2
