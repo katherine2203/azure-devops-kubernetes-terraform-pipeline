@@ -8,6 +8,9 @@ trigger:
 resources:
 - repo: self
 
+pool:
+  vmImage: ubuntu-latest
+
 variables:
   tag: '$(Build.BuildId)'
 
@@ -17,8 +20,6 @@ stages:
   jobs:
   - job: Build
     displayName: Build
-    pool:
-      vmImage: ubuntu-latest
     steps:
     - bash: docker --version
     - bash: docker login -u iamapikey -p tmOs03iOZ7oHVelagO4bzGK2z7Uzy90RmMh3rtzrDxRA us.icr.io
