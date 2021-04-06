@@ -12,6 +12,8 @@ pool:
 jobs:
 - job: RoksJob
   displayName: RoksJob
+  variables:
+    project_name: azure-project
   steps:
   # Install oc so that it can be used within a 'script' or bash 'task'
   - task: oc-setup@2
@@ -21,5 +23,7 @@ jobs:
       version: '3.11.154'
 # A script task making use of 'oc'
   - script: |
-      oc new-project azure-project
+      oc new-project $(project_name)
+      oc get secret all-icr-io -n default -o yaml | sed 's/default/$(project_name)/g' | oc create -n $(project_name) -f -
+      oc patch -n $(project_name) serviceaccount/default --type='json' -p='[{"op":"add","path":"/imagePullSecrets/-","value":{"name":"all-icr-io"}}]'
 #     oc apply -f ${SYSTEM_DEFAULTWORKINGDIRECTORY}/openshift/config.yaml -n my-project
