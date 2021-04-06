@@ -22,14 +22,12 @@ stages:
     displayName: Build
     steps:
     - bash: docker --version
-    - bash: docker login -u iamapikey -p tmOs03iOZ7oHVelagO4bzGK2z7Uzy90RmMh3rtzrDxRA us.icr.io
-    - bash: docker images
-      
-      
-    # - task: Docker@2
-    #   displayName: Build an image
-    #   inputs:
-    #     command: build
-    #     dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-    #     tags: |
-    #       $(tag)
+    - bash: docker login -u iamapikey -p $(apikey) us.icr.io
+    
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        repository: 'us.icr.io/azure-demo/java-test'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
