@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: currency-exchange
-        image: us.icr.io/azure-demo/java-test:11
+        image: us.icr.io/azure-demo/java-test:20
         imagePullPolicy: IfNotPresent
         ports:
         - name: liveness-port
