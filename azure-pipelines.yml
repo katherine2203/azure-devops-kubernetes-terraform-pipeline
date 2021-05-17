@@ -20,7 +20,6 @@ jobs:
     inputs:
       connectionType: 'OpenShift Connection Service'
       openshiftService: 'roks-cluster'
-      version: '4.6.23'
 # A script task making use of 'oc'
   - script: |
       oc new-project $(project_name)
