@@ -12,8 +12,8 @@ pool: prueba
 jobs:
 - job: RoksJob
   displayName: RoksJob
-  variables:
-    project_name: azure-project
+#  variables:
+#    project_name: azure-project
   steps:
   # Install oc so that it can be used within a 'script' or bash 'task'
   - task: oc-setup@2
